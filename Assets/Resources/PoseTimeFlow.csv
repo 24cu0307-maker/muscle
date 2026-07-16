@@ -1,0 +1,7 @@
+﻿PoseFlow,PoseID,EventName,start,end
+1,0,FrontDoubleBiceps,5,10
+2,2,side,15,20
+3,1,Most,25,30
+4,2,side,35,40
+5,0,FrontDoubleBiceps,45,50
+6,10,Evnet1,55,80
