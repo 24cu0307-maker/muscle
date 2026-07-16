@@ -6,7 +6,7 @@ public class UIController : MonoBehaviour
     [Header("UI‚Ì•Û‘¶êŠ")]
     [SerializeField] private UIData m_uiData;
 
-
+    //aa
     //ˆê‰ñ•\¦‚ÌŠÇ——p
     private bool isPoseShown = false;
 
