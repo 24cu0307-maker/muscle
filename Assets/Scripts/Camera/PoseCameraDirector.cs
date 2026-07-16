@@ -49,13 +49,13 @@ public sealed class PoseCameraDirector : MonoBehaviour
     [SerializeField]
     private CameraSequence testSequence;
 
-    /*
+    
     [SerializeField]
     private Key testPlayKey = Key.P;
 
     [SerializeField]
     private Key stopKey = Key.O;
-    */
+    
     [SerializeField]
     private bool testPlay = false;
 
@@ -88,14 +88,14 @@ public sealed class PoseCameraDirector : MonoBehaviour
 
     private void Update()
     {
-        /*
+        
         if (Keyboard.current[testPlayKey].wasPressedThisFrame)
         {
             if (IsPlaying) { StopSequence(); }
             else { PlaySequence(testSequence); }
         }
         if (Keyboard.current[stopKey].wasPressedThisFrame) { StopSequence(); }
-        */
+        
 
         if (testPlay && testbool)
         {

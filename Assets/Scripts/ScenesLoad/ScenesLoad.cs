@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class ScenesLoad : MonoBehaviour
 {
+    /*
     IEnumerator Start()
     {
         yield return SceneManager.LoadSceneAsync(
@@ -19,6 +20,7 @@ public class ScenesLoad : MonoBehaviour
         yield return SceneManager.LoadSceneAsync(
             "InGame",
             LoadSceneMode.Additive);
-        */
+        
     }
+    */
 }
