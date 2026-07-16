@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,6 +34,11 @@ public sealed class PoseCameraDirector : MonoBehaviour
 
     [SerializeField]
     private Transform faceTarget;
+
+    [SerializeField]
+    private List<Transform> point;
+
+
 
     [Header("Priority")]
     [SerializeField]
@@ -320,8 +326,43 @@ public sealed class PoseCameraDirector : MonoBehaviour
                 return faceTarget;
 
             case PoseCameraTargetPoint.Chest:
-            default:
                 return chestTarget;
+            case PoseCameraTargetPoint.point1:
+                return point[0];
+            case PoseCameraTargetPoint.point2:
+                return point[1];
+            case PoseCameraTargetPoint.point3:
+                return point[2];
+            case PoseCameraTargetPoint.point4:
+                return point[3];
+            case PoseCameraTargetPoint.point5:
+                return point[4];
+            case PoseCameraTargetPoint.point6:
+                return point[5];
+            case PoseCameraTargetPoint.point7:
+                return point[6];
+            case PoseCameraTargetPoint.point8:
+                return point[7];
+            case PoseCameraTargetPoint.point9:
+                return point[8];
+            case PoseCameraTargetPoint.point10:
+                return point[9];
+            case PoseCameraTargetPoint.point11:
+                return point[10];
+            case PoseCameraTargetPoint.point12:
+                return point[11];
+            case PoseCameraTargetPoint.point13:
+                return point[12];
+            case PoseCameraTargetPoint.point14:
+                return point[13];
+            case PoseCameraTargetPoint.point15:
+                return point[14];
+            case PoseCameraTargetPoint.point16:
+            default:
+                return point[15];
+
+
+
         }
     }
 

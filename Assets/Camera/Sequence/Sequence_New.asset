@@ -17,5 +17,6 @@ MonoBehaviour:
   returnToGameplayCamera: 1
   loop: 0
   shots:
-  - {fileID: 11400000, guid: 5d55fab41d44ba34dafd04535f72126e, type: 2}
-  - {fileID: 11400000, guid: 4c267028adafbda43bbf864696f2b13e, type: 2}
+  - {fileID: 11400000, guid: 0ac5632f058603e408f648ed4711e6e7, type: 2}
+  - {fileID: 11400000, guid: 0c7b3168ea6329049b0f8e72c5cc72ca, type: 2}
+  - {fileID: 11400000, guid: 478a111626e4ef64097575654f486f65, type: 2}
