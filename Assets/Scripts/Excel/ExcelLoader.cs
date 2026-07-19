@@ -10,7 +10,7 @@ using UnityEngine;
 public class ExcelLoader : MonoBehaviour
 {
     //インスタンス化
-    public static ExcelLoader Instance { get; private set; }
+    //public static ExcelLoader Instance { get; private set; }
 
     public ExcelPoseJudgeLoader excelPoseJudgeLoader;
     public ExcelPoseTimeFlowLoader excelPoseTimeFlowLoader;

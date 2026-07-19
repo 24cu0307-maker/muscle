@@ -6,6 +6,8 @@ public class UIController : MonoBehaviour
     [Header("UIの保存場所")]
     [SerializeField] private UIData m_uiData;
 
+   
+
     //aa
     //一回表示の管理用
     private bool isPoseShown = false;
@@ -36,10 +38,13 @@ public class UIController : MonoBehaviour
         // 縮小
         if (seconds >= pose.start && seconds < pose.end)
         {
-            //イベント実行　当たり判定
-            PoseJudgeFrame?.Invoke(pose.PoseID);
+           
 
             ScaleDown(pose.PoseID + approaching);
+
+
+            //イベント実行　当たり判定
+            PoseJudgeFrame?.Invoke(pose.PoseID);
         }
 
         /*

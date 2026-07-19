@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
@@ -7,16 +8,30 @@ public class PoseJudgeController : MonoBehaviour
     [Header("UIの保存場所")]
     [SerializeField] private UIController m_uiController;
 
+    [Header("UIの保存場所")]
+    [SerializeField] private ExcelLoader m_excelLoader;
+
+
     [Header("CSVのデータリスト")]
     private List<CSVPoseData> poseDatas;
 
     [Header("ポーズの判定")]
     private bool isPose;
 
+    public Action<int> Score;
+
+
     ///<summary>
     ///現在のポーズが成功しているかの判定
     ///</summary>
     public bool GetisPose() { return isPose; }
+
+    private void Awake()
+    {
+        poseDatas = m_excelLoader.excelPoseJudgeLoader.GetCSVDatas();
+
+    }
+
 
     //オブザーバー
     private void OnEnable()
@@ -29,20 +44,12 @@ public class PoseJudgeController : MonoBehaviour
     {
         m_uiController.PoseJudgeFrame -= PoseJudge;
     }
-
     public void PoseJudge(int poseID)
     {
-
+        Debug.Log("[PoseID]" + poseID);
         ///指定されたポーズデータを入れる
-        CSVPoseData pose = poseDatas[poseID];
+        var pose = poseDatas[poseID];
 
-        /*
-        ///ポーズのスコア計算
-        Score = scoreCalculator.TotalScore(
-            Mathf.Abs(pose.LeftShoulderRotation[0] - AngleDataManager.Instance.angleData.angle[1]), Mathf.Abs(pose.RightShoulderRotation[0] - AngleDataManager.Instance.angleData.angle[3]),
-            Mathf.Abs(pose.LeftelbowRotation[0] - AngleDataManager.Instance.angleData.angle[0]), Mathf.Abs(pose.RightelbowRotation[0] - AngleDataManager.Instance.angleData.angle[2])
-            );
-        */
         ///ポーズの判定
         if (AngleDataManager.Instance.angleData.angle[0] <= (pose.LeftelbowRotation[0] + pose.LeftelbowRotation[1]) &&
             AngleDataManager.Instance.angleData.angle[0] >= (pose.LeftelbowRotation[0] - pose.LeftelbowRotation[1]) &&
@@ -54,11 +61,14 @@ public class PoseJudgeController : MonoBehaviour
             AngleDataManager.Instance.angleData.angle[3] >= (pose.RightShoulderRotation[0] - pose.RightShoulderRotation[1])
             )
         {
+            Debug.Log("[posecheck]true");
             isPose = true;
+            Score?.Invoke(poseID);
 
         }
         else
         {
+            Debug.Log("[posecheck]false");
             isPose = false;
 
         }

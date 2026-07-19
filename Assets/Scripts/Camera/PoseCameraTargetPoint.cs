@@ -5,4 +5,9 @@ public enum PoseCameraTargetPoint
     Waist,
     Chest,
     Face
+
+
+
+
+
 }
