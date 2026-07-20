@@ -3,11 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
+[DefaultExecutionOrder(-200)]
 public class ScoreController : MonoBehaviour
 {
 
     [Header("gameManager")]
     [SerializeField] private GameManager m_gameManager;
+
+    [Header("UIの保存場所")]
+    [SerializeField] private ExcelLoader m_excelLoader;
 
     [Header("スコア")]
     private float m_score;
@@ -18,8 +22,15 @@ public class ScoreController : MonoBehaviour
     [Header("スコアの計算クラス")]
     private ScoreCalculator m_scoreCalculator;
 
-    [Header("ポーズのスコアを判定する")]
-    private PoseJudgeController m_poseJudgeController;
+    [Header("ポーズを判定する")]
+    [SerializeField] private PoseJudgeController m_poseJudgeController;
+
+    private void Start()
+    {
+        m_scoreCalculator = new ScoreCalculator();
+        m_poseDatas = m_excelLoader.excelPoseJudgeLoader.GetCSVDatas();
+    }
+
 
     //オブザーバー
     private void OnEnable()
@@ -30,7 +41,6 @@ public class ScoreController : MonoBehaviour
     //オブザーバー
     private void OnDisable()
     {
-        m_scoreCalculator = new ScoreCalculator();
         m_poseJudgeController.Score -= PoseScoreJudge;
     }
 

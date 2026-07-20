@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
+[DefaultExecutionOrder(-100)]
 public class PoseJudgeController : MonoBehaviour
 {
     [Header("UIÇÃï€ë∂èÍèä")]
@@ -72,6 +73,7 @@ public class PoseJudgeController : MonoBehaviour
             isPose = false;
 
         }
+
 
     }
 

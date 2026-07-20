@@ -1,12 +1,15 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
+[DefaultExecutionOrder(-200)]
 public class UIController : MonoBehaviour
 {
     [Header("UIの保存場所")]
     [SerializeField] private UIData m_uiData;
 
-   
+    [Header("ポーズを判定する")]
+    [SerializeField] private PoseJudgeController m_poseJudgeController;
 
     //aa
     //一回表示の管理用
@@ -20,44 +23,117 @@ public class UIController : MonoBehaviour
 
     public Action<int> PoseJudgeFrame;
 
+    private bool once = true;
+    private float time = 0;
 
+    [SerializeField] private GameObject uiPrefab1;
+    [SerializeField] private GameObject uiPrefab2;
 
-    public void UIAnimation(PoseFlow poseFlow, CSVDataPoseFlow pose, float seconds)
+    [SerializeField] private Transform canvas;
+
+    public void UIAnimation(PoseFlow poseFlow, CSVDataPoseFlow pose, float seconds, int specialFrame)
     {
-        pose = poseFlow.CurrentPose();
 
+        Debug.Log("[数値1]" + pose.PoseID);
         //開始時間
         if (!isPoseShown && seconds >= pose.start && seconds < pose.end)
         {
-            Show(pose.PoseID + wating);
-            Show(pose.PoseID + approaching);
-            isPoseShown = true;
+            /*
+            if(specialFrame <= 2)
+            {
+                Show(pose.PoseID + wating);
+                Show(pose.PoseID + approaching);
+                isPoseShown = true;
+                Debug.Log("[数値4]" + pose.PoseID);
+            }
+            */
+            
+            if (pose.PoseID == 1)
+            {
+                GameObject obj1 = Instantiate(uiPrefab1, canvas);
+                GameObject obj2 = Instantiate(uiPrefab2, canvas);
 
+                RectTransform rect1 = obj1.GetComponent<RectTransform>();
+                RectTransform rect2 = obj2.GetComponent<RectTransform>();
+                rect1.anchoredPosition = new Vector2(200, 100);
+                rect2.anchoredPosition = new Vector2(-200, 100);
+
+                rect1.sizeDelta = new Vector2(400, 400);
+                rect2.sizeDelta = new Vector2(400, 400);
+
+                Debug.Log("[数値3]" + pose.PoseID);
+
+               // obj1.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+              //  obj2.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+
+                obj1.SetActive(true);
+                obj2.SetActive(true);
+
+                isPoseShown = true;
+            }
+            Debug.Log("[数値2]" + pose.PoseID);
+            
         }
 
-        // 縮小
-        if (seconds >= pose.start && seconds < pose.end)
+       
+        /*
+        // 縮小(通常フレーム)
+        if (specialFrame <= 2 && seconds >= pose.start && seconds < pose.end)
         {
-           
-
             ScaleDown(pose.PoseID + approaching);
-
 
             //イベント実行　当たり判定
             PoseJudgeFrame?.Invoke(pose.PoseID);
         }
-
-        /*
-        //成功時
-        if (angleJudge.GetisPose() && poseJudge.PoseJudge_Perfect(uIData.getUI(pose.PoseID + approaching), uIData.getUI(pose.PoseID + wating))
-)
-        {
-            m_uiController.Show(uIData.getUI(pose.PoseID + success));
-            m_uiController.Hide(uIData.getUI(pose.PoseID + wating));
-            m_uiController.Hide(uIData.getUI(pose.PoseID + approaching));
-        }
         */
+        
+        // 三人称(通常フレーム)
+        if (pose.PoseID == 1 && seconds >= pose.start && seconds < pose.end)
+        {
+            /*
+            if(once)
+            {
+                time = seconds;
+                once = false;
+            }
 
+
+            if (seconds >= (time + 5.0f))
+            {
+
+            }
+            //*/
+          
+
+
+            pose.PoseID = 0;
+            //イベント実行　当たり判定
+            PoseJudgeFrame?.Invoke(pose.PoseID);
+            pose.PoseID = 2;
+            //イベント実行　当たり判定
+            PoseJudgeFrame?.Invoke(pose.PoseID);
+
+            pose.PoseID = 1;
+        }
+    
+    
+
+
+        //完璧成功時
+        if (m_poseJudgeController.GetisPose() && m_poseJudgeController.PoseJudge_Normal(pose.PoseID + approaching, pose.PoseID + wating, m_uiData))
+        {
+            Show(pose.PoseID + success);
+            Hide(pose.PoseID + wating);
+            Hide(pose.PoseID + approaching);
+        }
+
+        //通常成功時
+        if (m_poseJudgeController.GetisPose() && m_poseJudgeController.PoseJudge_Perfect(pose.PoseID + approaching, pose.PoseID + wating, m_uiData))
+        {
+            Show(pose.PoseID + success);
+            Hide(pose.PoseID + wating);
+            Hide(pose.PoseID + approaching);
+        }
 
         // 終了時間
         if (seconds >= pose.end && poseFlow.HasNextPose())
@@ -70,6 +146,7 @@ public class UIController : MonoBehaviour
 
             // 次のポーズ用にリセット
             isPoseShown = false;
+            //once = true;
 
         }
 
@@ -97,6 +174,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     public void Show(int _uinumber)
     {
+        Debug.Log("[数値]" + _uinumber);
         m_uiData.getUI(_uinumber).SetActive(true);
     }
 

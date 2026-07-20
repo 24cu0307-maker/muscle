@@ -7,6 +7,7 @@ using UnityEngine;
 ///<summary>
 ///CSVデータの読み込みと保存
 ///</summary>
+[DefaultExecutionOrder(-300)]
 public class ExcelLoader : MonoBehaviour
 {
     //インスタンス化

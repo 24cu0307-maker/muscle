@@ -332,6 +332,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScoreController
   m_gameManager: {fileID: 1843740549}
+  m_excelLoader: {fileID: 440262078}
+  m_poseJudgeController: {fileID: 356124504}
 --- !u!4 &308004257
 Transform:
   m_ObjectHideFlags: 0
@@ -644,6 +646,7 @@ MonoBehaviour:
   m_uiController: {fileID: 1813448175}
   m_excelLoader: {fileID: 440262078}
   m_gameManager: {fileID: 1843740549}
+  m_audienceController: {fileID: 0}
   m_endtimer: 10
 --- !u!4 &813159518
 Transform:
@@ -1291,6 +1294,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIController
   m_uiData: {fileID: 1717000945}
+  m_poseJudgeController: {fileID: 356124504}
+  uiPrefab1: {fileID: 203210200}
+  uiPrefab2: {fileID: 661058164}
+  canvas: {fileID: 2051786222}
 --- !u!4 &1813448176
 Transform:
   m_ObjectHideFlags: 0
@@ -1970,6 +1977,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31db4facf86a4a1448a0513a1b5c4e3b, type: 3}
+--- !u!224 &2051786222 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6944060470143863341, guid: 31db4facf86a4a1448a0513a1b5c4e3b, type: 3}
+  m_PrefabInstance: {fileID: 2051786221}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
