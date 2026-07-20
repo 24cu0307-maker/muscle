@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3c490e63dbd790943bc6c5f40503ddda, type: 3}
-  m_Name: Sequence_New
+  m_Name: Sequence_TestBack
   m_EditorClassIdentifier: Assembly-CSharp::CameraSequence
   memo: "\u3069\u306E\u5834\u9762\u3067\u4F7F\u3046\u6F14\u51FA\u304B\u3092\u66F8\u304D\u307E\u3059\u3002"
   pauseGameTime: 1
   returnToGameplayCamera: 1
   loop: 0
   shots:
-  - {fileID: 11400000, guid: 0ac5632f058603e408f648ed4711e6e7, type: 2}
-  - {fileID: 11400000, guid: 0c7b3168ea6329049b0f8e72c5cc72ca, type: 2}
+  - {fileID: 11400000, guid: a4f906ba413c4c741a19e404e6dc828f, type: 2}
+  - {fileID: 11400000, guid: c01df811ca87016419bf64f8f711d403, type: 2}

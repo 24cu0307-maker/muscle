@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72e2a53bd6688954e937fc7471158be8, type: 3}
-  m_Name: Shot_TestZERO
+  m_Name: Shot_TestBack2
   m_EditorClassIdentifier: Assembly-CSharp::CameraShotPreset
   memo: "\u4F55\u3092\u898B\u305B\u308B\u30AB\u30E1\u30E9\u304B\u3092\u66F8\u304D\u307E\u3059\u3002"
-  targetPoint: 3
-  transitionDuration: 0.25
-  moveDuration: 1
-  holdDuration: 0.4
+  targetPoint: 5
+  transitionDuration: 0.1
+  moveDuration: 0.5
+  holdDuration: 20
   moveCurve:
     serializedVersion: 2
     m_Curve:
@@ -41,17 +41,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  startYaw: 0
+  startYaw: 90
   startPitch: 0
   startDistance: 1.5
   startHeight: 0
   startSide: 0
-  startFieldOfView: 45
+  startFieldOfView: 30
   startDutch: 0
-  endYaw: 0
+  endYaw: 180
   endPitch: 0
-  endDistance: 1.5
-  endHeight: 0
+  endDistance: 3.5
+  endHeight: 2
   endSide: 0
-  endFieldOfView: 15
+  endFieldOfView: 30
   endDutch: 0
