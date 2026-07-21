@@ -7,12 +7,6 @@ using UnityEngine;
 public sealed class InGameManager : MonoBehaviour
 {
 
-
-
-    //[Header("Effectの管理")]
-    //[SerializeField] private EffectSystem m_effectSystem;
-    //[Header("UIの管理")]
-    //[SerializeField] private UIManamager m_uiManamager;
     [Header("UIの操作")]
     [SerializeField] private UIController m_uiController;
     [Header("UIの保存場所")]
@@ -25,6 +19,10 @@ public sealed class InGameManager : MonoBehaviour
 
     [Header("終了の時間")]
     [SerializeField] private float m_endtimer;
+
+    [Header("エフェクトシステム")]
+    [SerializeField] private EffectSystem m_effectSystem;
+
 
     private float GameTimeSeconds;                  //現在のゲーム時間
     private int PoseMaxCount = 20;            //ポーズ数を設定
@@ -51,12 +49,15 @@ public sealed class InGameManager : MonoBehaviour
         // CSVのデータをPoseFlowへ渡す
         poseFlow = new PoseFlow(m_excelLoader.excelPoseTimeFlowLoader.GetCSVDatas());
 
+        m_effectSystem.PlayEffect("Tesst");
+
 
     }
 
     private void Update()
     {
-        //if (m_endtimer <= GameTimeSeconds) { m_gameManager.FinishGame(); }
+        if (m_endtimer <= GameTimeSeconds) { m_gameManager.FinishGame(); }
+
 
         //現在のゲーム時間の更新
         UpdateTime();
@@ -68,6 +69,9 @@ public sealed class InGameManager : MonoBehaviour
 
         //現在のポーズのフレームを実行　衝突判定とフレームUIの管理
         m_uiController.UIAnimation(poseFlow, pose, GameTimeSeconds, m_SpecialFrame);
+
+
+
 
         //フレームの場合
         switch (pose.PoseID)
@@ -81,7 +85,7 @@ public sealed class InGameManager : MonoBehaviour
             //通常フレーム
             case 1:
                 //カメラの移動実行
-
+                
                 break;
             //通常フレーム
             case 2:
