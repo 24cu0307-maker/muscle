@@ -41,17 +41,17 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  startYaw: 0
+  startYaw: -30
   startPitch: 0
-  startDistance: 1.5
+  startDistance: 4.2
   startHeight: 0
   startSide: 0
   startFieldOfView: 45
   startDutch: 0
-  endYaw: 0
-  endPitch: 0
-  endDistance: 1.5
-  endHeight: 0
+  endYaw: 30
+  endPitch: -3
+  endDistance: 3.5
+  endHeight: -0.2
   endSide: 0
-  endFieldOfView: 15
+  endFieldOfView: 36
   endDutch: 0
