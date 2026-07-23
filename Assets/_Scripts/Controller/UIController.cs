@@ -1,9 +1,14 @@
 using System;
+<<<<<<< HEAD
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEditor.Experimental.AssetDatabaseExperimental.AssetDatabaseCounters;
 using static UnityEditor.PlayerSettings;
+=======
+using Unity.VisualScripting;
+using UnityEngine;
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 
 [DefaultExecutionOrder(-200)]
 public class UIController : MonoBehaviour
@@ -26,6 +31,7 @@ public class UIController : MonoBehaviour
 
     public Action<int> PoseJudgeFrame;
 
+<<<<<<< HEAD
     private GameObject[] m_currentFrame;
 
     private GameObject[] m_backFrame = new GameObject[3];
@@ -248,19 +254,41 @@ public class UIController : MonoBehaviour
 
 
         /*
+=======
+    private bool once = true;
+    private float time = 0;
+
+    [SerializeField] private GameObject uiPrefab1;
+    [SerializeField] private GameObject uiPrefab2;
+
+    [SerializeField] private Transform canvas;
+
+    public void UIAnimation(PoseFlow poseFlow, CSVDataPoseFlow pose, float seconds, int specialFrame)
+    {
+
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
         Debug.Log("[数値1]" + pose.PoseID);
         //開始時間
         if (!isPoseShown && seconds >= pose.start && seconds < pose.end)
         {
+<<<<<<< HEAD
            
             //if(specialFrame <= 2)
+=======
+            /*
+            if(specialFrame <= 2)
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
             {
                 Show(pose.PoseID + wating);
                 Show(pose.PoseID + approaching);
                 isPoseShown = true;
                 Debug.Log("[数値4]" + pose.PoseID);
             }
+<<<<<<< HEAD
             
+=======
+            */
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
             
             if (pose.PoseID == 1)
             {
@@ -290,9 +318,22 @@ public class UIController : MonoBehaviour
         }
 
        
+<<<<<<< HEAD
         
       
         
+=======
+        /*
+        // 縮小(通常フレーム)
+        if (specialFrame <= 2 && seconds >= pose.start && seconds < pose.end)
+        {
+            ScaleDown(pose.PoseID + approaching);
+
+            //イベント実行　当たり判定
+            PoseJudgeFrame?.Invoke(pose.PoseID);
+        }
+        */
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
         
         // 三人称(通常フレーム)
         if (pose.PoseID == 1 && seconds >= pose.start && seconds < pose.end)
@@ -309,6 +350,7 @@ public class UIController : MonoBehaviour
             {
 
             }
+<<<<<<< HEAD
             //
           
 
@@ -325,10 +367,45 @@ public class UIController : MonoBehaviour
 
 
 
+=======
+            //*/
+          
+
+
+            pose.PoseID = 0;
+            //イベント実行　当たり判定
+            PoseJudgeFrame?.Invoke(pose.PoseID);
+            pose.PoseID = 2;
+            //イベント実行　当たり判定
+            PoseJudgeFrame?.Invoke(pose.PoseID);
+
+            pose.PoseID = 1;
+        }
+    
+    
+
+
+        //完璧成功時
+        if (m_poseJudgeController.GetisPose() && m_poseJudgeController.PoseJudge_Normal(pose.PoseID + approaching, pose.PoseID + wating, m_uiData))
+        {
+            Show(pose.PoseID + success);
+            Hide(pose.PoseID + wating);
+            Hide(pose.PoseID + approaching);
+        }
+
+        //通常成功時
+        if (m_poseJudgeController.GetisPose() && m_poseJudgeController.PoseJudge_Perfect(pose.PoseID + approaching, pose.PoseID + wating, m_uiData))
+        {
+            Show(pose.PoseID + success);
+            Hide(pose.PoseID + wating);
+            Hide(pose.PoseID + approaching);
+        }
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 
         // 終了時間
         if (seconds >= pose.end && poseFlow.HasNextPose())
         {
+<<<<<<< HEAD
 
             for (int i = 0; i < m_currentFrame.Length; i++)
             {
@@ -345,11 +422,21 @@ public class UIController : MonoBehaviour
             Hide(m_currentFrameApproaching);
             ScaleReset(m_currentFrameApproaching);
             */
+=======
+            Hide(pose.PoseID + wating);
+            Hide(pose.PoseID + approaching);
+            Hide(pose.PoseID + success);
+            ScaleReset(pose.PoseID + approaching);
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
             poseFlow.NextPose();
 
             // 次のポーズ用にリセット
             isPoseShown = false;
+<<<<<<< HEAD
             once = true;
+=======
+            //once = true;
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 
         }
 
@@ -359,6 +446,7 @@ public class UIController : MonoBehaviour
     /// <summary>
     ///サイズダウン
     /// <summary>
+<<<<<<< HEAD
     public void ScaleDown(GameObject m_uiData)
     {
         m_uiData.transform.localScale -= Vector3.one * Time.deltaTime * 0.05f;
@@ -367,27 +455,46 @@ public class UIController : MonoBehaviour
     public void ScaleDown1(GameObject m_uiData)
     {
         m_uiData.transform.localScale -= Vector3.one * Time.deltaTime * 0.05f;
+=======
+    public void ScaleDown(int _uinumber)
+    {
+        m_uiData.getUI(_uinumber).transform.localScale -= Vector3.one * Time.deltaTime * 0.15f;
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
     }
 
     /// <summary>
     ///サイズリセット
     /// <summary>
+<<<<<<< HEAD
     public void ScaleReset(GameObject m_uiData)
     {
         m_uiData.transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+=======
+    public void ScaleReset(int _uinumber)
+    {
+        m_uiData.getUI(_uinumber).transform.localScale = new Vector3(1.8f, 1.8f, 1.8f);
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
     }
 
     /// <summary>
     ///表示
     /// <summary>
+<<<<<<< HEAD
     public void Show(GameObject m_uiData)
     {
         m_uiData.SetActive(true);
+=======
+    public void Show(int _uinumber)
+    {
+        Debug.Log("[数値]" + _uinumber);
+        m_uiData.getUI(_uinumber).SetActive(true);
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
     }
 
     /// <summary>
     ///非表示
     /// <summary>
+<<<<<<< HEAD
     public void Hide(GameObject m_uiData)
     {
         m_uiData.SetActive(false);
@@ -414,4 +521,12 @@ public class UIController : MonoBehaviour
         Destroy(_uiFrame);
     }
 
+=======
+    public void Hide(int _uinumber)
+    {
+        m_uiData.getUI(_uinumber).SetActive(false);
+    }
+
+  
+>>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 }
