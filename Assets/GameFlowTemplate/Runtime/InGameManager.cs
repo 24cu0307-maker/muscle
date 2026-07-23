@@ -56,11 +56,7 @@ public sealed class InGameManager : MonoBehaviour
 
     private void Update()
     {
-<<<<<<< HEAD
         //if (m_endtimer <= GameTimeSeconds) { m_gameManager.FinishGame(); }
-=======
-        if (m_endtimer <= GameTimeSeconds) { m_gameManager.FinishGame(); }
->>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 
 
         //現在のゲーム時間の更新
@@ -69,65 +65,13 @@ public sealed class InGameManager : MonoBehaviour
         //現在のポーズを取得
         pose = poseFlow.CurrentPose();
 
-<<<<<<< HEAD
 
 
 
 
         //現在のポーズのフレームを実行　衝突判定とフレームUIの管理
         m_uiController.UIAnimation(poseFlow, pose, GameTimeSeconds);
-=======
-        Debug.Log("[数値]" + pose.PoseID);
->>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 
-        //現在のポーズのフレームを実行　衝突判定とフレームUIの管理
-        m_uiController.UIAnimation(poseFlow, pose, GameTimeSeconds, m_SpecialFrame);
-
-
-
-
-        //フレームの場合
-        switch (pose.PoseID)
-        {
-            //通常フレーム
-            case 0:
-                //カメラの移動実行
-
-                break;
-
-            //通常フレーム
-            case 1:
-                //カメラの移動実行
-                
-                break;
-            //通常フレーム
-            case 2:
-                //カメラの移動実行
-
-                break;
-
-            //3人称視点
-            case 10:
-                //カメラの移動実行
-
-                //観客起動
-
-                break;
-
-            //溜めてタイミング
-            case 11:
-                //カメラの移動実行
-
-                //観客起動
-
-                break;
-
-            //キープタイミング
-            case 12:
-                //カメラの移動実行
-
-                break;
-        }
 
     }
 

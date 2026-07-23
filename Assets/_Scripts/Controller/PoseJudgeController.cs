@@ -22,20 +22,10 @@ public class PoseJudgeController : MonoBehaviour
     public Action<int> Score;
 
 
-    public Action<int> Score;
-
-
     ///<summary>
     ///現在のポーズが成功しているかの判定
     ///</summary>
     public bool GetisPose(int PoseID) { return isPose[PoseID]; }
-
-    private void Awake()
-    {
-        poseDatas = m_excelLoader.excelPoseJudgeLoader.GetCSVDatas();
-
-    }
-
 
     private void Awake()
     {
@@ -59,7 +49,7 @@ public class PoseJudgeController : MonoBehaviour
     {
         Debug.Log("[PoseID]" + poseID);
         ///指定されたポーズデータを入れる
-        var pose = poseDatas[poseID];
+        CSVPoseData pose = poseDatas[poseID];
 
         ///ポーズの判定
         if (AngleDataManager.Instance.angleData.angle[0] <= (pose.LeftelbowRotation[0] + pose.LeftelbowRotation[1]) &&
@@ -73,22 +63,14 @@ public class PoseJudgeController : MonoBehaviour
             )
         {
             Debug.Log("[posecheck]true");
-<<<<<<< HEAD
             isPose[poseID] = true;
-=======
-            isPose = true;
->>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
             Score?.Invoke(poseID);
 
         }
         else
         {
             Debug.Log("[posecheck]false");
-<<<<<<< HEAD
             isPose[poseID] = false;
-=======
-            isPose = false;
->>>>>>> 65471bca7e8f2e06018e8515274cb51c715ec805
 
         }
 
