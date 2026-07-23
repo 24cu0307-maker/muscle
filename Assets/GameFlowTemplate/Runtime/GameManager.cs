@@ -22,10 +22,10 @@ namespace GameFlowTemplate
     [RequireComponent(typeof(ScoreManager))]
     [RequireComponent(typeof(TimeManager))]
     [RequireComponent(typeof(SceneManager))]
-    public sealed class GameManager : MonoBehaviour
+    public class GameManager : MonoBehaviour
     {
         //インスタンス化
-        public static GameManager Instance { get; private set; }
+        //public static GameManager Instance { get; private set; }
 
         private const string DefaultPlayerName = ""; //名前未設定時はScoreRankingSystem側でNoName_日付_時間にする
         private const float EmptyPlayTimeSeconds = 0.0f; //TimeManagerが未設定の場合に使うプレイ時間
@@ -52,6 +52,7 @@ namespace GameFlowTemplate
 
         public TimeManager GetTimeManager() { return m_timeManager; }                 //
 
+        
         IEnumerator Start()
         {
             yield return UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(
@@ -63,9 +64,9 @@ namespace GameFlowTemplate
             yield return SceneManager.LoadSceneAsync(
                 "InGame",
                 LoadSceneMode.Additive);
-            */
+         */   
         }
-
+        
         private void Awake()
         {
 

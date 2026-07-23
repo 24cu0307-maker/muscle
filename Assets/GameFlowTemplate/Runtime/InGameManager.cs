@@ -6,18 +6,22 @@ using UnityEngine;
 
 public sealed class InGameManager : MonoBehaviour
 {
-    //インスタンス化
-    //public static InGameManager Instance { get; private set; }
 
-
-    [Header("Effectの管理")]
-    [SerializeField] private EffectSystem m_effectSystem;
-    //[Header("UIの管理")]
-    //[SerializeField] private UIManamager m_uiManamager;
     [Header("UIの操作")]
     [SerializeField] private UIController m_uiController;
+    [Header("UIの保存場所")]
+    [SerializeField] private ExcelLoader m_excelLoader;
+    [Header("gameManager")]
+    [SerializeField] private GameManager m_gameManager;
+
+    [Header("観客")]
+    [SerializeField] private AudienceController m_audienceController;
+
     [Header("終了の時間")]
     [SerializeField] private float m_endtimer;
+
+    [Header("エフェクトシステム")]
+    [SerializeField] private EffectSystem m_effectSystem;
 
 
     private float GameTimeSeconds;                  //現在のゲーム時間
@@ -27,33 +31,43 @@ public sealed class InGameManager : MonoBehaviour
 
     private CSVDataPoseFlow pose;
 
-    //private int PoseFram = 0;
+    private int m_SpecialFrame = -1;
 
     public Action<PoseFlow, CSVDataPoseFlow, float> PoseFrame;
 
 
-    private void Awake()
+
+    public void Start()
     {
 
         //ゲームを開始する
         //GameManagerで管理している
         //Timerとスコアをリセット
         //Timerの開始と状態の切り替え
-        GameManager.Instance.StartGame();
+        m_gameManager.StartGame();
 
         // CSVのデータをPoseFlowへ渡す
-        poseFlow = new PoseFlow(ExcelLoader.Instance.excelPoseTimeFlowLoader.GetCSVDatas());
+        poseFlow = new PoseFlow(m_excelLoader.excelPoseTimeFlowLoader.GetCSVDatas());
+
+        m_effectSystem.PlayEffect("Tesst");
 
 
     }
 
     private void Update()
     {
+        //if (m_endtimer <= GameTimeSeconds) { m_gameManager.FinishGame(); }
+
+
         //現在のゲーム時間の更新
         UpdateTime();
 
         //現在のポーズを取得
         pose = poseFlow.CurrentPose();
+
+
+
+
 
         //現在のポーズのフレームを実行　衝突判定とフレームUIの管理
         m_uiController.UIAnimation(poseFlow, pose, GameTimeSeconds);
@@ -67,7 +81,7 @@ public sealed class InGameManager : MonoBehaviour
     /// </summary>
     private void UpdateTime()
     {
-        GameTimeSeconds = GameManager.Instance.GetTimeManager().GameTimeSeconds;
+        GameTimeSeconds = m_gameManager.GetTimeManager().GameTimeSeconds;
     }
 
     /// <summary>
@@ -77,7 +91,7 @@ public sealed class InGameManager : MonoBehaviour
     {
         if (PoseMaxCount == 0)
         {
-            GameManager.Instance.FinishGame();
+            m_gameManager.FinishGame();
 
         }
 

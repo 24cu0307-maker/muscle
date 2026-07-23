@@ -7,10 +7,11 @@ using UnityEngine;
 ///<summary>
 ///CSVデータの読み込みと保存
 ///</summary>
+[DefaultExecutionOrder(-300)]
 public class ExcelLoader : MonoBehaviour
 {
     //インスタンス化
-    public static ExcelLoader Instance { get; private set; }
+    //public static ExcelLoader Instance { get; private set; }
 
     public ExcelPoseJudgeLoader excelPoseJudgeLoader;
     public ExcelPoseTimeFlowLoader excelPoseTimeFlowLoader;
